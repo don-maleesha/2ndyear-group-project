@@ -1,0 +1,79 @@
+/* Swiper Container */
+.slide-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;/* Center the swiper with top and bottom margins */
+  }
+  
+  /* Card Wrapper */
+  .card-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  /* Individual Card */
+  .card {
+    min-width: 320px; /* Ensures each card takes up the desired width */
+    margin: 0 10px; /* Space between cards */
+    flex-shrink: 0; /* Prevent cards from shrinking */
+  }
+  
+  /* Navigation Buttons */
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);/* Semi-transparent background */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1001; /* Ensure buttons are above other elements */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0 2px;
+  }
+  
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Change color on hover */
+    transform: translateY(-50%) scale(1.1); /* Slightly enlarge on hover */
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .card {
+      min-width: 80%; /* Show fewer parts of adjacent cards on smaller screens */
+    }
+  
+    .prev,
+    .next {
+      padding: 8px 12px;
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      min-width: 90%;
+      margin: 0 5px;
+    }
+  
+    .prev,
+    .next {
+      padding: 6px 10px;
+      font-size: 16px;
+    }
+  }
+  
