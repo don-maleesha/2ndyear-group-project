@@ -1,5 +1,3 @@
-// script.js
-
 let currentSlide = 0;
 
 // Select elements
@@ -13,7 +11,7 @@ const totalSlides = cards.length;
 
 // Function to update the swiper position
 function updateSwiper() {
-  const slideWidth = cards[0].clientWidth + 20; // card width + margin
+  const slideWidth = cards[0].clientWidth + parseInt(getComputedStyle(cards[0]).marginRight);
   const offset = -(currentSlide * slideWidth);
   cardWrapper.style.transform = `translateX(${offset}px)`;
 }
@@ -47,16 +45,26 @@ cardWrapper.addEventListener('touchmove', (e) => {
   if (!isDragging) return;
   const currentX = e.touches[0].clientX;
   const diff = startX - currentX;
-  
-  if (diff > 50) { // Swipe left
-    nextButton.click();
-    isDragging = false;
-  } else if (diff < -50) { // Swipe right
-    prevButton.click();
+
+  if (Math.abs(diff) > 50) { // Swipe threshold
+    if (diff > 0) { // Swipe left
+      nextButton.click();
+    } else { // Swipe right
+      prevButton.click();
+    }
     isDragging = false;
   }
 });
 
 cardWrapper.addEventListener('touchend', () => {
   isDragging = false;
+});
+
+// Optional: Enable keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') {
+    prevButton.click();
+  } else if (e.key === 'ArrowRight') {
+    nextButton.click();
+  }
 });
